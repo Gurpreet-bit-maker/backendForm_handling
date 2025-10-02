@@ -1,24 +1,40 @@
 let mongoose = require("mongoose");
 
-main().then((res) => {
-  console.log("connected with altas mongoose");
-});
+// main().then((res) => {
+//   console.log("connected with altas mongoose");
+// });
+
+// async function main() {
+//   try {
+//     await mongoose.connect(
+//       "mongodb+srv://GurpreetDB_9211:92119211@cluster0.35fp2tb.mongodb.net/PortfolioDB",
+//       {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//       }
+//     );
+//   } catch (error) {
+//     console.log("cannot connect");
+//   }
+// }
 
 async function main() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://GurpreetDB_9211:92119211@cluster0.35fp2tb.mongodb.net/PortfolioDB",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ Connected to MongoDB Atlas");
   } catch (error) {
-    console.log("cannot connect");
+    console.log("❌ Cannot connect to MongoDB Atlas", error);
   }
-
-  // use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 }
+
+// Run the connection
+main();
+  
+
+// use `await mongoose.connect('mongodb://user:password@127.0.0.1:27017/test');` if your database has auth enabled
 
 let UserSchema = new mongoose.Schema({
   firstName: {
