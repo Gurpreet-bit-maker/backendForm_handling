@@ -50,7 +50,7 @@ app.get("/forms/get", (req, res) => {
       res.json(data);
     })
     .catch((err) => console.log(err));
-  res.send("hello");
+  // res.send("hello");
   console.log("hellow");
 });
 
