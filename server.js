@@ -51,7 +51,7 @@ app.get("/forms/get", (req, res) => {
     .then((data) => {
       res.json(data);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err))
   // res.send("hello");
   console.log("hellow");
 });
