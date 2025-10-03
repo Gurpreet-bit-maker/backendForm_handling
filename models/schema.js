@@ -20,13 +20,10 @@ let mongoose = require("mongoose");
 
 async function main() {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("✅ Connected to MongoDB Atlas");
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("✅ Connected to MongoDB Atlas for schema");
   } catch (error) {
-    console.log("❌ Cannot connect to MongoDB Atlas", error);
+    console.log("❌ Cannot connect to MongoDB Atlas for schema", error);
   }
 }
 
@@ -58,6 +55,6 @@ let UserSchema = new mongoose.Schema({
   },
 });
 
-let UserData = mongoose.model("UserData", UserSchema);
+let Userdata = mongoose.model("Userdata", UserSchema);
 
-module.exports = UserData;
+module.exports = Userdata;

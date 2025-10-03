@@ -14,10 +14,7 @@ app.use(express.json());
 
 async function main() {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("✅ Connected to MongoDB Atlas");
   } catch (error) {
     console.log("❌ Cannot connect to MongoDB Atlas", error);
