@@ -24,23 +24,30 @@ async function main() {
 // Run the connection
 main();
 
-app.post("/forms/post", (req, res) => {
-  let { firstName, lastName, email, phoneNum, msg } = req.body;
+app.post("/forms/post", async (req, res) => {
+  try {
+    const { firstName, lastName, email, phoneNum, msg } = req.body;
 
-  userFormData
-    .create({
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phoneNum: phoneNum,
-      msg: msg,
-    })
-    .then((res) => {
-      console.log("correct stored", res);
+    // MongoDB me store karo
+    const newData = await userFormData.create({
+      firstName,
+      lastName,
+      email,
+      phoneNum,
+      msg,
     });
 
-  console.log(req.body);
+    console.log("correctly stored", newData);
+
+    // Frontend ko response bhejo
+    res.status(201).json(newData);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to store data" });
+  }
 });
+
 
 app.get("/forms/get", (req, res) => {
   userFormData
